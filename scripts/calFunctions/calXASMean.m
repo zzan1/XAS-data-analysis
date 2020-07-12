@@ -5,7 +5,8 @@ function resultArray = calXASMean(PATH, prefix, suffix, I0_Array, dark_Array)
     % they only have 15000 times different time measurements.
 
     % FileName rule, can be changed depends on it's regular.
-    filesNumber = getFilesNumber(PATH, false);
+%     filesNumber = getFilesNumber(PATH, false);
+    filesNumber = 1000;
     
     % For every dark file, get 2nd columns and mean.
     for i = 1:1:filesNumber
@@ -20,14 +21,4 @@ function resultArray = calXASMean(PATH, prefix, suffix, I0_Array, dark_Array)
         resultArray = (resultArray + calXAS(loopTempArray, I0_Array, dark_Array)) ./ 2;
     end
 
-end
-
-function result = calXAS(I_Array, I0_Array, dark_Array)
-    % result = log((I0-dark)/(I1-dark))
-
-    numerator = I0_Array - dark_Array;
-    denominator = I_Array - dark_Array;
-    result = log10(numerator ./ denominator);
-
-    result = real(result);
 end
